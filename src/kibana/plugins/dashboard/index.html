@@ -5,6 +5,7 @@
     <form name="queryInput"
       class="fill inline-form"
       ng-submit="filterResults()"
+      ng-show="userHasTheRightToEditDashboards"
       role="form">
 
       <div class="typeahead" kbn-typeahead="dashboard">
@@ -30,10 +31,10 @@
     </form>
 
     <div class="button-group" role="toolbar">
-      <kbn-tooltip text="New Dashboard" placement="bottom" append-to-body="1">
+      <kbn-tooltip text="New Dashboard" ng-show="userHasTheRightToEditDashboards" placement="bottom" append-to-body="1">
         <button ng-click="newDashboard()" aria-label="New Dashboard"><i aria-hidden="true" class="fa fa-file-new-o"></i></button>
       </kbn-tooltip>
-      <kbn-tooltip text="Save Dashboard" placement="bottom" append-to-body="1">
+      <kbn-tooltip text="Save Dashboard" ng-show="userHasTheRightToEditDashboards" placement="bottom" append-to-body="1">
         <button
           aria-label="Save Dashboard"
           aria-haspopup="true"
@@ -63,7 +64,7 @@
           <i aria-hidden="true" class="fa fa-external-link"></i>
         </button>
       </kbn-tooltip>
-      <kbn-tooltip text="Add Visualization" placement="bottom" append-to-body="1">
+      <kbn-tooltip text="Add Visualization" ng-show="userHasTheRightToEditDashboards" placement="bottom" append-to-body="1">
         <button
           aria-label="Add Visualization"
           aria-haspopup="true"

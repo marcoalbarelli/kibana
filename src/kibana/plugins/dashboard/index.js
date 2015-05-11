@@ -52,6 +52,8 @@ define(function (require) {
       controller: function ($scope, $route, $routeParams, $location, configFile, Private, getAppState) {
         var queryFilter = Private(require('components/filter_bar/query_filter'));
 
+        $scope.userHasTheRightToEditDashboards = userHasTheRightToEditDashboards;
+
         var notify = new Notifier({
           location: 'Dashboard'
         });

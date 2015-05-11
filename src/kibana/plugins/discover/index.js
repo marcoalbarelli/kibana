@@ -6,12 +6,15 @@ define(function (require, module, exports) {
   require('plugins/discover/controllers/discover');
   require('css!plugins/discover/styles/main.css');
 
-  var apps = require('registry/apps');
-  apps.register(function DiscoverAppModule() {
-    return {
-      id: 'discover',
-      name: 'Discover',
-      order: 0
-    };
-  });
+
+  if(userHasTheRightToSeeDiscoverModule) {
+      var apps = require('registry/apps');
+      apps.register(function DiscoverAppModule() {
+          return {
+              id: 'discover',
+              name: 'Discover',
+              order: 0
+          };
+      });
+  }
 });

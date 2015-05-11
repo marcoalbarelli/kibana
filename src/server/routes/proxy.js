@@ -11,6 +11,8 @@ var join = require('path').join;
 var logger = require('../lib/logger');
 var validateRequest = require('../lib/validateRequest');
 
+var userQueryMustBeOverridden = false;
+var filterTerms = '["Bonifico Italia","Bonifico SEPA"]';
 
 // If the target is backed by an SSL and a CA is provided via the config
 // then we need to inject the CA
@@ -100,6 +102,12 @@ router.use(function (req, res, next) {
   if (req.rawBody) {
     options.headers['content-length'] = req.rawBody.length;
     options.body = req.rawBody.toString('utf8');
+    if(options.url.search("_msearch")>=0 && userQueryMustBeOverridden){
+      options.body = options.body.replace(/"filter":{"bool":{"must":\[/mg, '"filter":{"bool":{"must":[{"terms":{"descrizione":'+filterTerms+',"cliente":["Che bqncq","intesa"]}},');
+      options.headers['content-length'] = options.body.length;
+    }
+
+
   } else {
     options.headers['content-length'] = 0;
   }

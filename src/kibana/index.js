@@ -1,3 +1,9 @@
+var userHasTheRightToSeeDiscoverModule = false;
+var userHasTheRightToSeeVisualizeModule = true;
+var userHasTheRightToSeeVisualizeWizardModule = true;
+var userHasTheRightToSeeSettingsModule = false;
+var userHasTheRightToEditDashboards = true;
+
 /**
  * main app level module
  */
