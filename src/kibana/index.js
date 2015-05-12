@@ -1,8 +1,8 @@
 var userHasTheRightToSeeDiscoverModule = false;
-var userHasTheRightToSeeVisualizeModule = true;
+var userHasTheRightToSeeVisualizeModule = false;
 var userHasTheRightToSeeVisualizeWizardModule = true;
 var userHasTheRightToSeeSettingsModule = false;
-var userHasTheRightToEditDashboards = true;
+var userHasTheRightToEditDashboards = false;
 
 /**
  * main app level module

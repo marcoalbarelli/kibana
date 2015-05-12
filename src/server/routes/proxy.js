@@ -102,9 +102,14 @@ router.use(function (req, res, next) {
   if (req.rawBody) {
     options.headers['content-length'] = req.rawBody.length;
     options.body = req.rawBody.toString('utf8');
-    if(options.url.search("_msearch")>=0 && userQueryMustBeOverridden){
-      options.body = options.body.replace(/"filter":{"bool":{"must":\[/mg, '"filter":{"bool":{"must":[{"terms":{"descrizione":'+filterTerms+',"cliente":["Che bqncq","intesa"]}},');
-      options.headers['content-length'] = options.body.length;
+    if(options.url.search(".kibana") < 0 &&
+        options.url.search("shard") < 0 &&
+        options.url.search("_msearch")>=0 && userQueryMustBeOverridden){
+        options.body = options.body.replace(/"filter":{"bool":{"must":\[/mg, '"filter":{"bool":{"must":[{"terms":{"descrizione":'+filterTerms+'}},');
+        options.headers['content-length'] = options.body.length;
+    } else if(options.url.search(".kibana") >= 0 && options.url.search("dashboard/_search")>=0 && userQueryMustBeOverridden){
+        options.body = options.body.replace(/"match_all":\{\}/mg,'"ids":{"type":"dashboard","values":["smashdashboard-all"]}');
+        options.headers['content-length'] = options.body.length;
     }
 
 
